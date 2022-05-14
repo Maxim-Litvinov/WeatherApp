@@ -41,18 +41,18 @@ const fetchData = async () => {
 	store = {
 		...store,
 		feelslike,
-		cloudcover,
 		temperature,
-		humidity,
 		observationTime,
-		pressure,
-		uvIndex,
 		isDay,
 		description: description[0],
-		windSpeed,
 		properties: {
-
-		}
+			cloudcover: 0,
+			humidity: 0,
+			windSpeed: 0,
+			pressure: 0,
+			visibility: 0,
+			uvIndex: 0,
+		},
 	}
 
 
@@ -75,6 +75,20 @@ const getImage = (description) => {
 		default:
 			return 'the.png';
 	}
+}
+
+const renderPropertiy = () => {
+	return `
+		<div class="property">
+			<div class="property-icon">
+				<img src="./img/icons/${icon}" alt="">
+			</div>
+			<div class="property-info">
+				<div class="property-info__value">${value}</div>
+				<div class="property-description">${title}</div>
+			</div>
+		</div>
+	`
 }
 
 const markup = () => {
