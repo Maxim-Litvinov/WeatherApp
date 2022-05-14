@@ -3,18 +3,20 @@ const link = "http://api.weatherstack.com/current?access_key=bd7ecea9e64f6349c0b
 const root = document.getElementById('root');
 
 let store = {
-	city: "London",
+	city: "Moscow",
 	feelslike: 0,
-	cloudcover: 0,
 	temperature: 0,
-	humidity: 0,
 	observationTime: "00:00 AM",
-	pressure: 0,
-	uvIndex: 0,
-	visibility: 0,
 	isDay: "yes",
 	description: "",
-	windSpeed: 0,
+	properties: {
+		cloudcover: 0,
+		humidity: 0,
+		windSpeed: 0,
+		pressure: 0,
+		visibility: 0,
+		uvIndex: 0,
+	},
 
 }
 
@@ -48,14 +50,65 @@ const fetchData = async () => {
 		isDay,
 		description: description[0],
 		windSpeed,
+		properties: {
+
+		}
 	}
 
-	renderComponent()
 
+	console.log(data)
+	renderComponent()
 };
 
+
+const getImage = (description) => {
+
+	switch (description) {
+		case "Partly cloudy", "Overcast", "Partly":
+			return 'partly.png';
+		case "Clear":
+			return 'clear.png';
+		case "Fog", "Mist":
+			return 'fog.png';
+		case "Sunny":
+			return 'sunny.png';
+		default:
+			return 'the.png';
+	}
+}
+
+const markup = () => {
+	const { city, description, observationTime, temperature, isDay } = store;
+
+	const containerClass = isDay === "yes" ? "is-day" : ""
+
+	return `
+			<div class="container ${containerClass}">
+				<div class="top">
+					<div class="city">
+						<div class="city-subtitle">Погода сегодня</div>
+						<div class="city-title" id="city">
+							<span>${city}</span>
+						</div>
+					</div>
+					<div class="city-info">
+						<div class="top-left">
+							<img src="./img/${getImage(description)}" alt="" class="icon">
+							<div class="discription">${description}</div>
+						</div>
+						<div class="top-right">
+							<div class="city-info__sibtitle">as of ${observationTime}</div>
+							<div class="city-info__title">${temperature}°</div>
+						</div>
+					</div>
+				</div>
+				<div id="properties"></div>
+			</div>
+	`
+}
+
 const renderComponent = () => {
-	root.innerHTML = `${store.temperature}°`
+	root.innerHTML = markup();
 }
 
 fetchData();

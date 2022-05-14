@@ -143,6 +143,7 @@ img {
 .top {
   position: relative;
   padding: 18px;
+  color: #fff;
 }
 
 .city-info {
@@ -161,7 +162,7 @@ img {
 .city-subtitle {
   font-size: 15px;
   line-height: 18px;
-  color: #ffffff;
+  
 }
 
 .city-title {
@@ -170,7 +171,7 @@ img {
   font-weight: 700;
   font-size: 35px;
   line-height: 41px;
-  color: #ffffff;
+  
   padding: 1px 8px;
   margin-top: 6px;
   cursor: pointer;
@@ -184,25 +185,26 @@ img {
 .city-info__subtitle {
   font-size: 13px;
   line-height: 15px;
-  color: #ffffff;
+  
 }
 
 .city-info__title {
   font-weight: 500;
   font-size: 53px;
   line-height: 77px;
-  color: #ffffff;
+ 
 }
 
 .description {
   font-weight: 500;
   font-size: 25px;
   line-height: 36px;
-  color: #ffffff;
+ 
 }
 
 .top-right {
   text-align: right;
+  
 }
 
 .icon {
